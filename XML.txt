@@ -1,0 +1,41 @@
+import os
+import xml.etree.ElementTree as ET
+print("Здраствуйте, я ваш помощник Султан. Вы хотите работать или взаимодействовать с файлом?")
+otvet = input().lower()
+if otvet == "yes" or otvet == "да":
+    function = input('Напишите функцию, которую хотите выполнить||')
+    file_format = input('Напишите имя и формат файла||')
+    if function == "Создать файл" or function == "Создай файл" or function == "Создай файл, Султан":
+        if os.path.isfile(file_format):
+            print("Простите, но я не могу создать файл, так как файл с таким именем уже существует")
+        else:
+            root = ET.Element(file_format)
+            doc = ET.SubElement(root, 'doc')
+            tree = ET.ElementTree(root)
+            tree.write(file_format)
+    elif function == "Записать в файл" or function == "Запиши в файл" or function == "Запиши в файл, Султан":
+        if os.path.isfile(file_format):
+            tree = ET.parse(file_format)
+            root = tree.getroot()
+            root[0].text = input('To: ')
+            root[1].text = input('From: ')
+            root[2].text = input('Heading: ')
+            root[3].text = input('Body: ')
+            tree.write(file_format)
+        else:
+            print('Error: такого файла нет')
+    elif function == "Прочитать файл" or function == "Прочитай файл" or function == "Прочитай файл, Султан":
+        if os.path.isfile(file_format):
+            tree = ET.parse(file_format)
+            root = tree.getroot()
+            print(f'To: {root[0].text}\nFrom: {root[1].text}\nHeading: {root[2].text}\nBody: {root[3].text}')
+        else:
+            print("Ошибочка вышла, файла нет, создайте его")
+    elif function == "Удалить файл" or function == "Удали файл" or function == "Удали файл, Султан":
+        if os.path.isfile(file_format):
+            os.remove(file_format)
+            print("Выполнено")
+        else:
+            print("Не выполнено, так как файла не существует")
+    else:
+        print('Не выполнена, инструкции нет')
