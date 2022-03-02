@@ -23,6 +23,8 @@ if otvet == "YES" or otvet == "Да" or otvet == "Yes" or otvet == "ДА":
             file = open(file_format, 'r')
             print(file.read())
             file.close()
+        else:
+            print('Ошибка, такого файла нет')
     elif function == "Удалить файл" or function == "Удали файл" or function == "Удали файл, Султан":
         if os.path.isfile(file_format):
             os.remove(file_format)
