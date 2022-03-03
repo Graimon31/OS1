@@ -1,0 +1,6 @@
+import shutil
+total, used, free = shutil.disk_usage('/')
+total = total / 1024 / 1024 / 1024
+used = used / 1024 / 1024 / 1024
+free = free / 1024 / 1024 / 1024
+print(f'Место\nВсего: {total:.2f}Gb\nИспользовано: {used:.2f}Gb\nСвободно: {free:.2f}Gb')
